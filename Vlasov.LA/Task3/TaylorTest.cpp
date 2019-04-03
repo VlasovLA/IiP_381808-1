@@ -26,7 +26,7 @@ int main()
 	cin >> x;
 	cout << T.calculate(x) << endl;
 	
-	cout << T.deviation(3) << endl;
+	cout << T.otklon(3) << endl;
 	
 
 

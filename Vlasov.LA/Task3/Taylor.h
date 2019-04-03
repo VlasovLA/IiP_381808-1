@@ -2,23 +2,24 @@
 using namespace std;
 
 string IntToStr(int i);
-double F(double a, int n);
 string DoubToStr(double Val);
+double F(double a, int n);
+string SF(int n)
 
 class Taylor 
 {
-	int length;
+	int n;
 	double a;
-	string *items;
+	string *kp;
 public:
 
-	Taylor(double a, int len);
+	Taylor(double a, int l);
 	~Taylor();
 	int getlength();
 	double calculate(double x);
 	string* getrow();
-	double deviation(double x);
+	double otklon(double x);
 	string operator[](int i);
 	friend ostream& operator<<(ostream& stream, const Taylor& T);
-	int factorial(int i);
+	int fact(int i);
 };

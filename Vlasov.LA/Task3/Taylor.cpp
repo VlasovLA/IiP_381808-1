@@ -69,69 +69,69 @@ string SF(int n)
 	}
 }
 
-Taylor::Taylor(double a, int len) 
+Taylor::Taylor(double a, int l) 
 {
-	length = len;
-	items = new string[length];
-	for (int i = 0; i < length; i++)
-		items[i] = SF(i) + "/" + DoubToStr(i) + "!";
+	n = l;
+	kp = new string[n];
+	for (int i = 0; i < n; i++)
+		kp[i] = SF(i) + "/" + DoubToStr(i) + "!";
 }
 
 Taylor::~Taylor() 
 {
-	length = 0;
+	n = 0;
 }
 
 int Taylor::getlength() 
 {
-	return length;
+	return n;
 }
 
 double Taylor::calculate(double x)
 {
 	double res = 0;
-	for (int i = 0; i < this->length; i++)
-		res += F(this->a, i) / factorial(i) * pow((x - this->a), i);
+	for (int i = 0; i < this->n; i++)
+		res += F(this->a, i) / fact(i) * pow((x - this->a), i);
 	return res;
 }
 
 string Taylor::operator[] (int i) 
 {
-	if (i > 0 && i < length + 1)
-		return items[i - 1];
+	if (i > 0 && i < n + 1)
+		return kp[i - 1];
 	else
 		return "Ne korrectnoe znachenie";
 }
 
 string* Taylor::getrow() 
 {
-	return items;
+	return kp;
 }
 
 ostream& operator<<(ostream& stream, const Taylor& T) 
 {
-	string row = "koeffecienti: " + T.items[0];
-	for (int i = 1; i < T.length; i++) 
+	string row = "koeffecienti: " + T.kp[0];
+	for (int i = 1; i < T.n; i++) 
 	{
-		row += " " + T.items[i];
+		row += " " + T.kp[i];
 	}
 	stream << row;
 	return stream;
 }
 
-int Taylor::factorial(int i) 
+int Taylor::fact(int i) 
 {
-	if (i == 1 || i == 0) 
+	if (i < 2) 
 	{
 		return 1;
 	}
 	else 
 	{
-		return i * factorial(i - 1);
+		return i * fact(i - 1);
 	}
 }
 
-double Taylor::deviation(double x) 
+double Taylor::otklon(double x) 
 {
-	return abs(sin(x) - this->calculate(x));
+	return abs(this->calculate(x) - sin(x));
 }
