@@ -4,7 +4,7 @@ using namespace std;
 string IntToStr(int i);
 string DoubToStr(double Val);
 double F(double a, int n);
-string SF(int n)
+string SF(int n);
 
 class Taylor 
 {
