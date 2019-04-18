@@ -69,7 +69,7 @@ string SF(int n)
 	}
 }
 
-Taylor::Taylor(double a, int l) 
+Taylor::Taylor(double a, int l)
 {
 	n = l;
 	kp = new string[n];
@@ -77,12 +77,12 @@ Taylor::Taylor(double a, int l)
 		kp[i] = SF(i) + "/" + DoubToStr(i) + "!";
 }
 
-Taylor::~Taylor() 
+Taylor::~Taylor()
 {
 	n = 0;
 }
 
-int Taylor::getlength() 
+int Taylor::getlength()
 {
 	return n;
 }
@@ -95,7 +95,7 @@ double Taylor::calculate(double x)
 	return res;
 }
 
-string Taylor::operator[] (int i) 
+string Taylor::operator[] (int i)
 {
 	if (i > 0 && i < n + 1)
 		return kp[i - 1];
@@ -103,15 +103,15 @@ string Taylor::operator[] (int i)
 		return "Ne korrectnoe znachenie";
 }
 
-string* Taylor::getrow() 
+string* Taylor::getrow()
 {
 	return kp;
 }
 
-ostream& operator<<(ostream& stream, const Taylor& T) 
+ostream& operator<<(ostream& stream, const Taylor& T)
 {
 	string row = "koeffecienti: " + T.kp[0];
-	for (int i = 1; i < T.n; i++) 
+	for (int i = 1; i < T.n; i++)
 	{
 		row += " " + T.kp[i];
 	}
@@ -119,19 +119,19 @@ ostream& operator<<(ostream& stream, const Taylor& T)
 	return stream;
 }
 
-int Taylor::fact(int i) 
+int Taylor::fact(int i)
 {
-	if (i < 2) 
+	if (i < 2)
 	{
 		return 1;
 	}
-	else 
+	else
 	{
 		return i * fact(i - 1);
 	}
 }
 
-double Taylor::otklon(double x) 
+double Taylor::otklon(double x)
 {
 	return abs(this->calculate(x) - sin(x));
 }
